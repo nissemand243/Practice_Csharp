@@ -7,6 +7,11 @@ namespace Ex0.Tests;
 
 public class UnitTest1
 {
+
+    public StringReader helperMethod(string input)
+    {
+        return new StringReader(input);
+    }
     [Fact]
     public void IsLeapYear_GivenYear1973_returnFalse()
     {
@@ -86,15 +91,16 @@ public class UnitTest1
         Assert.True(actual);
         Assert.Equal("yay", output[0].Trim());
     }
-    [Fact]
-    public void IsLeapYear_GivenUserInput1200_returnError()
+    [Theory]
+    [InlineData("1200")]
+    [InlineData("123.4")]
+    [InlineData("hejsa")]
+    public void IsLeapYear_GivenUserInput1200_returnError(string input)
     {
         //Arrange
         StringWriter writer = new StringWriter();
         Console.SetOut(writer);
-
-        var input = new StringReader("1200");
-        Console.SetIn(input);
+        Console.SetIn(helperMethod(input));
 
 
         //act
@@ -106,4 +112,5 @@ public class UnitTest1
         //assert
         Assert.Equal("Input invalid. Please only enter years starting from 1582. Please ONLY input integer numbers.", output[0].Trim());
     }
+    
 }
