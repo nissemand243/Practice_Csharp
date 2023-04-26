@@ -15,11 +15,11 @@ public class UnitTest1
         Year testObj = new Year(){};
 
         //act
-        var actual = testObj.IsLeapYear(1973);
+        var actual = testObj.IsLeapYear(input);
         var expected = false;
 
         //assert
-        Assert.Equal(actual,expected);
+        Assert.Equal(expected,actual);
     }
     [Fact]
     public void IsLeapYear_Given1900_returnFalse()
@@ -33,7 +33,7 @@ public class UnitTest1
         var expected = false;
 
         //assert
-        Assert.Equal(actual,expected);
+        Assert.Equal(expected,actual);
     }
     [Fact]
     public void IsLeapYear_Given1600_returnTrue()
@@ -47,13 +47,13 @@ public class UnitTest1
         var expected = true;
 
         //assert
-        Assert.Equal(actual,expected);
+        Assert.Equal(expected,actual);
     }
     [Fact]
-    public void IsLeapYear_Given1004_returnTrue()
+    public void IsLeapYear_Given1812_returnTrue()
     {
         //Arrange
-        int input = 1004;
+        int input = 1812;
         Year testObj = new Year(){};
 
         //act
@@ -61,6 +61,29 @@ public class UnitTest1
         var expected = true;
 
         //assert
-        Assert.Equal(actual,expected);
+        Assert.Equal(expected,actual);
+    }
+    [Fact]
+    public void IsLeapYear_GivenUserInput1720_returnTrue()
+    {
+        //Arrange
+        StringWriter writer = new StringWriter();
+        Console.SetOut(writer);
+
+        var input = new StringReader("1720");
+        Console.SetIn(input);
+
+
+        //act
+        Year testObj = new Year(){};
+        Year.Main(new String[0]);
+        
+        string[] output = writer.ToString().Split(Environment.NewLine);
+
+        var actual = testObj.IsLeapYear(1720);
+
+        //assert
+        Assert.True(actual);
+        Assert.Equal("yay", output[0].Trim());
     }
 }

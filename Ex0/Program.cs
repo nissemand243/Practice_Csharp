@@ -5,7 +5,16 @@ namespace Ex0
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Year year = new Year();
+            var input = Console.ReadLine();
+            if(year.IsLeapYear(int.Parse(input)))
+            {
+                Console.WriteLine("yay");
+            }
+            else
+            {
+                Console.WriteLine("nay");
+            }
         }
 
 
