@@ -86,4 +86,24 @@ public class UnitTest1
         Assert.True(actual);
         Assert.Equal("yay", output[0].Trim());
     }
+    [Fact]
+    public void IsLeapYear_GivenUserInput1200_returnError()
+    {
+        //Arrange
+        StringWriter writer = new StringWriter();
+        Console.SetOut(writer);
+
+        var input = new StringReader("1200");
+        Console.SetIn(input);
+
+
+        //act
+        Year testObj = new Year(){};
+        Year.Main(new String[0]);
+        
+        string[] output = writer.ToString().Split(Environment.NewLine);
+
+        //assert
+        Assert.Equal("Input invalid. Please only enter years starting from 1582. Please ONLY input integer numbers.", output[0].Trim());
+    }
 }

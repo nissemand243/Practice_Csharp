@@ -7,14 +7,34 @@ namespace Ex0
         {
             Year year = new Year();
             var input = Console.ReadLine();
-            if(year.IsLeapYear(int.Parse(input)))
+            int inputYear;
+
+            bool isInt = Int32.TryParse(input, out inputYear);
+
+            bool leapYear = year.IsLeapYear(inputYear);
+            if(isInt)
             {
-                Console.WriteLine("yay");
+                if(inputYear >= 1582)
+                {
+                    if(leapYear)
+                    {
+                     Console.WriteLine("yay");
+                    }
+                    else
+                    {
+                        Console.WriteLine("nay");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Input invalid. Please only enter years starting from 1582. Please ONLY input integer numbers.");
+                }  
             }
             else
             {
-                Console.WriteLine("nay");
+                Console.WriteLine("Input invalid. Please only enter years starting from 1582. Please ONLY input integer numbers.");
             }
+            
         }
 
 
